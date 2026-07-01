@@ -1,0 +1,6 @@
+typeof undefined      // "undefined"
+typeof null           // "object"   
+typeof function(){}    // "function"
+typeof []              // "object"   
+typeof Symbol()        // "symbol"
+typeof 10n              // "bigint"
