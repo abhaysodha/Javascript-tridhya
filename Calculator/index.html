@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="calculator">
+
+   
+    <div class="display">
+      <div id="expression" class="expression"></div>
+      <div id="result" class="result">0</div>
+    </div>
+
+     
+    <div class="buttons">
+      <button class="btn function" data-action="clear">C</button>
+      <button class="btn function" data-action="backspace">⌫</button>
+      <button class="btn function" data-value="(">(</button>
+      <button class="btn function" data-value=")">)</button>
+
+      <button class="btn number" data-value="7">7</button>
+      <button class="btn number" data-value="8">8</button>
+      <button class="btn number" data-value="9">9</button>
+      <button class="btn operator" data-value="/">÷</button>
+
+      <button class="btn number" data-value="4">4</button>
+      <button class="btn number" data-value="5">5</button>
+      <button class="btn number" data-value="6">6</button>
+      <button class="btn operator" data-value="*">×</button>
+
+      <button class="btn number" data-value="1">1</button>
+      <button class="btn number" data-value="2">2</button>
+      <button class="btn number" data-value="3">3</button>
+      <button class="btn operator" data-value="-">−</button>
+
+      <button class="btn number" data-value="0">0</button>
+      <button class="btn number" data-value=".">.</button>
+      <button class="btn operator" data-value="%">%</button>
+      <button class="btn operator" data-value="+">+</button>
+
+      <button class="btn operator" data-value="^">^</button>
+      <button class="btn equals" data-action="equals">=</button>
+    </div>
+
+        //Error message
+    <div id="error" class="error"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+ 
+    const expressionEl = document.getElementById("expression");
+    const resultEl = document.getElementById("result");
+    const errorEl = document.getElementById("error");
+    const buttons = document.querySelectorAll(".btn");
+
+    let currentExpression = "";
+
+    function updateDisplay() {
+      expressionEl.textContent = currentExpression;
+      errorEl.textContent = "";
+    }
+
+    function showResult() {
+      try {
+        const value = calculate(currentExpression); // from script.js
+        resultEl.textContent = value;
+        errorEl.textContent = "";
+      } catch (err) {
+        resultEl.textContent = "Error";
+        errorEl.textContent = err.message;
+      }
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const action = button.dataset.action;
+        const value = button.dataset.value;
+
+        if (action === "clear") {
+          currentExpression = "";
+          resultEl.textContent = "0";
+          updateDisplay();
+          return;
+        }
+
+        if (action === "backspace") {
+          currentExpression = currentExpression.slice(0, -1);
+          updateDisplay();
+          return;
+        }
+
+        if (action === "equals") {
+          showResult();
+          return;
+        }
+
+        currentExpression += value;
+        updateDisplay();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (/[0-9+\-*/%^.() ]/.test(e.key)) {
+        currentExpression += e.key;
+        updateDisplay();
+      } else if (e.key === "Enter") {
+        showResult();
+      } else if (e.key === "Backspace") {
+        currentExpression = currentExpression.slice(0, -1);
+        updateDisplay();
+      } else if (e.key === "Escape") {
+        currentExpression = "";
+        resultEl.textContent = "0";
+        updateDisplay();
+      }
+    });
+  </script>
+
+</body>
+</html>
