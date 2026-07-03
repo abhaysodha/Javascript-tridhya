@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Student Management System</h1>
+
+  <!-- ADD STUDENT -->
+  <section>
+    <h2>Add Student</h2>
+    <input type="text" id="inputName" placeholder="Name" />
+    <input type="text" id="inputRollNo" placeholder="Roll No" />
+    <input type="number" id="inputAge" placeholder="Age" />
+    <input type="number" id="inputMath" placeholder="Math marks" />
+    <input type="number" id="inputScience" placeholder="Science marks" />
+    <input type="number" id="inputEnglish" placeholder="English marks" />
+    <input type="number" id="inputAttendance" placeholder="Attendance %" />
+    <button id="btnAddStudent">Add Student</button>
+  </section>
+
+  <!-- SEARCH (debounced) -->
+  <section>
+    <h2>Search by Name</h2>
+    <input type="text" id="inputSearch" placeholder="Type a name..." />
+  </section>
+
+  <!-- ACTIONS -->
+  <section>
+    <h2>Actions</h2>
+    <button id="btnShowAll">Show All Students</button>
+    <button id="btnSortAge">Sort by Age</button>
+    <button id="btnSortMarks">Sort by Average Marks</button>
+    <button id="btnPassFail">Pass / Fail List</button>
+    <button id="btnGroupGrade">Group by Grade</button>
+    <button id="btnClassStats">Class Stats</button>
+    <button id="btnReset">Reset Data</button>
+  </section>
+
+  <!-- OUTPUT -->
+  <section>
+    <h2>Output</h2>
+    <pre id="output">Results will appear here...</pre>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
