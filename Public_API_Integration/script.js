@@ -75,13 +75,31 @@ async function handleConversion(amount, from, to) {
 }
 
 
-/* ---------- DOM wiring (new part) ---------- */
+
+function populateDropdowns(rates) {
+  const currencyCodes = Object.keys(rates);
+
+  const optionsHTML = currencyCodes
+    .map(code => `<option value="${code}">${code}</option>`)
+    .join('');
+
+  fromSelect.innerHTML = optionsHTML;
+  toSelect.innerHTML = optionsHTML;
+
+  fromSelect.value = "USD";
+  toSelect.value = "INR";
+}
 
 const amountInput = document.getElementById('amount');
 const fromSelect = document.getElementById('fromCurrency');
 const toSelect = document.getElementById('toCurrency');
 const resultEl = document.getElementById('result');
 const statusEl = document.getElementById('status');
+
+
+fetchRates("USD").then(function (rates) {
+  populateDropdowns(rates);
+});
 
 function handleInput() {
   const amount = parseFloat(amountInput.value);
