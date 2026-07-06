@@ -190,4 +190,4 @@ addProducts("Jeans", "Clothing", 1200, 4.0);
 addProducts("Watch", "Accessories", 4500, 4.3);
 
 refreshCategoryDropdown();
-renderProducts(products);
+renderProducts(products); 
