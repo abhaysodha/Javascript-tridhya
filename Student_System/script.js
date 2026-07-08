@@ -1,4 +1,4 @@
-//  1. GENERIC UTILITIES
+
 function debounce(fn, delay) {
   let timer;
   return function (...args) {
@@ -6,14 +6,13 @@ function debounce(fn, delay) {
     timer = setTimeout(() => fn.apply(this, args), delay);
   };
 }
-  // 2. STUDENT DB MODULE
+
 const StudentDB = (function () {
 
   // PRIVATE STATE 
   let students = [];
   let nextId = 1;
-
-  // PRIVATE CONFIG 
+ 
   const gradeTable = [
     { min: 90, grade: "A" },
     { min: 75, grade: "B" },
@@ -22,7 +21,6 @@ const StudentDB = (function () {
     { min: 0, grade: "F" },
   ];
 
-  // PRIVATE HELPERS 
   function calcAverage(marksObj) {
     const values = Object.values(marksObj || {});
     if (values.length === 0) return 0;
@@ -34,7 +32,7 @@ const StudentDB = (function () {
     return found ? found.grade : "F";
   }
 
-  // Basic input validation 
+
   function validateStudentInput({ name, rollNo, age }) {
     const errors = [];
     if (!name || typeof name !== "string") errors.push("Name is required and must be text.");
@@ -43,10 +41,10 @@ const StudentDB = (function () {
     return errors;
   }
 
-  //  PUBLIC API 
+
   return {
 
-   // CRUD 
+
 
     addStudent({ name, rollNo, age, marks = {}, attendance = 0 }) {
       const errors = validateStudentInput({ name, rollNo, age });
@@ -118,7 +116,7 @@ const StudentDB = (function () {
       });
     },
 
-    //MARKS & GRADES 
+
     getAverageMarks(id) {
       const student = this.getStudentById(id);
       if (!student) return null;
@@ -152,7 +150,6 @@ const StudentDB = (function () {
       }, {});
     },
 
-    //CLASS-WIDE STATS
     getClassStats() {
       if (students.length === 0) {
         return { totalStudents: 0, classAverage: 0, topper: null, lowest: null };
@@ -182,20 +179,19 @@ const StudentDB = (function () {
 
 
 
-//DOM ATTECHMENT
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
   const output = document.getElementById("output");
 
-  // Single shared function to display any result — keeps output format consistent.
+
   function show(data) {
     output.textContent =
       typeof data === "string" ? data : JSON.stringify(data, null, 2);
-    console.log(data); // always mirror to console for deeper inspection
+    console.log(data); 
   }
 
-  /* ---------- Add Student ---------- */
   document.getElementById("btnAddStudent").addEventListener("click", () => {
     const result = StudentDB.addStudent({
       name: document.getElementById("inputName").value,

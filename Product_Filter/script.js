@@ -1,7 +1,6 @@
 let products = [];
 let id = 1;
 
-// ---------- CREATE ----------
 function addProducts(name, category, price, rating){
     const newProduct = { id: id, name: name, category: category, price: price, rating: rating };
     products.push(newProduct);
@@ -9,24 +8,23 @@ function addProducts(name, category, price, rating){
     return newProduct;
 }
 
-// ---------- READ ----------
 function findProductById(id){
     return products.find(product => product.id === id);
 }
 
-// ---------- UPDATE ----------
+
 function updateProductById(id, updateFields){
     products = products.map(product =>
         product.id === id ? { ...product, ...updateFields } : product
     );
 }
 
-// ---------- DELETE ----------
+
 function deleteProductById(id){
     products = products.filter(product => product.id !== id);
 }
 
-// ---------- FILTER ----------
+
 function filterByCategory(category){
     return products.filter(product => product.category === category);
 }
@@ -35,7 +33,7 @@ function filterByPriceRange(min, max){
     return products.filter(product => product.price >= min && product.price <= max);
 }
 
-// ---------- SEARCH ----------
+
 function searchByName(query){
     return products.filter(product =>
         product.name.toLowerCase().includes(query.toLowerCase())
@@ -50,7 +48,7 @@ function debounce(callback, delay = 400){
     };
 }
 
-// ---------- SORT ----------
+
 function sortByField(list, field, order = "asc"){
     return [...list].sort((a, b) => {
         if (typeof a[field] === "string") {
@@ -62,12 +60,12 @@ function sortByField(list, field, order = "asc"){
     });
 }
 
-// ---------- AGGREGATE ----------
+
 function getUniqueCategories(){
     return [...new Set(products.map(product => product.category))];
 }
 
-// ---------- MASTER FILTER ----------
+
 function filterProducts(options = {}){
     let result = [...products];
     const { category, minPrice, maxPrice, keyword, sortBy, sortOrder = "asc" } = options;
@@ -81,9 +79,6 @@ function filterProducts(options = {}){
     return result;
 }
 
-// =========================================================
-// UI CODE BELOW - connects the functions above to the page
-// =========================================================
 
 function renderProducts(list){
     const tbody = document.getElementById("productTableBody");
@@ -182,7 +177,6 @@ function resetFilters(){
     applyCurrentFilters();
 }
 
-// ---------- Starter data so the table isn't empty on load ----------
 addProducts("Laptop", "Electronics", 55000, 4.5);
 addProducts("Phone", "Electronics", 25000, 4.2);
 addProducts("T-Shirt", "Clothing", 500, 3.8);

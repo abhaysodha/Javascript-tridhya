@@ -1,0 +1,12 @@
+{
+  "name": "library_management",
+  "version": "1.0.0",
+  "description": "for manage library daily work ",
+  "license": "ISC",
+  "author": "abhay",
+  "type": "module",
+  "main": "model.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

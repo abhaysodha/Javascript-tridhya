@@ -10,13 +10,12 @@ function tokenize(expression) {
   while (i < expression.length) {
     const ch = expression[i];
 
-    // Skip whitespace
     if (ch === " " || ch === "\t") {
       i++;
       continue;
     }
 
-    // Number: digits and at most one decimal point
+
     if (/[0-9.]/.test(ch)) { //
       let numStr = "";
       let dotCount = 0;
@@ -32,7 +31,7 @@ function tokenize(expression) {
         i++;
       }
 
-      // Reject something like "." with no digits at all
+      
       if (numStr === "." || numStr === "") {
         throw new Error("Invalid number format");
       }
@@ -41,21 +40,20 @@ function tokenize(expression) {
       continue;
     }
 
-    // Operators
+  
     if ("+-*/%^".includes(ch)) {
       tokens.push({ type: "operator", value: ch });
       i++;
       continue;
     }
 
-    // Parentheses
+ 
     if (ch === "(" || ch === ")") {
       tokens.push({ type: "paren", value: ch });
       i++;
       continue;
     }
 
-    // Anything else (letters, symbols, emojis, etc.) is invalid
     throw new Error(`Invalid character in expression: "${ch}"`);
   }
 
@@ -103,13 +101,11 @@ function toPostfix(tokens) {
   const opStack = [];
 
   for (const token of tokens) {
-    // --- Case 1: numbers go straight to output ---
     if (token.type === "number") {
       output.push(token);
       continue;
     }
 
-    // --- Case 2: operators ---
     if (token.type === "operator") {
       const current = OPERATORS[token.value];
 
@@ -130,13 +126,11 @@ function toPostfix(tokens) {
       continue;
     }
 
-    // --- Case 3: left parenthesis, just push it as a marker ---
     if (token.type === "paren" && token.value === "(") {
       opStack.push(token);
       continue;
     }
 
-    // --- Case 4: right parenthesis, unwind back to matching '(' ---
     if (token.type === "paren" && token.value === ")") {
       let foundMatch = false;
 
@@ -156,7 +150,6 @@ function toPostfix(tokens) {
     }
   }
 
-  // Drain whatever operators are left on the stack
   while (opStack.length > 0) {
     const top = opStack.pop();
     if (top.type === "paren") {
@@ -177,7 +170,6 @@ function evaluatePostfix(postfixTokens) {
       continue;
     }
 
-    // Unary operators: one operand
     if (token.value === "u-" || token.value === "u+") {
       if (stack.length < 1) {
         throw new Error("Invalid expression: missing operand for unary operator");
@@ -187,7 +179,6 @@ function evaluatePostfix(postfixTokens) {
       continue;
     }
 
-    // Binary operators: two operands
     if (stack.length < 2) {
       throw new Error(`Invalid expression: missing operand for "${token.value}"`);
     }
@@ -221,7 +212,6 @@ function evaluatePostfix(postfixTokens) {
     }
   }
 
-  // A valid expression always collapses to exactly one number
   if (stack.length !== 1) {
     throw new Error("Invalid expression: check for missing operators or operands");
   }
@@ -235,7 +225,6 @@ function evaluatePostfix(postfixTokens) {
   return result;
 }
 
-//extra 
 function validateTokenSequence(tokens) {
   if (tokens.length === 0) {
     throw new Error("Empty expression");
@@ -255,12 +244,10 @@ function validateTokenSequence(tokens) {
       }
     }
 
-    // Two numbers in a row with nothing between them: "3 4"
     if (token.type === "number" && prev && prev.type === "number") {
       throw new Error("Invalid expression: two numbers in a row without an operator");
     }
 
-    // Two binary operators in a row: "3 + * 4" (unary +/- is allowed after an operator)
     if (
       token.type === "operator" &&
       prev &&
@@ -272,7 +259,6 @@ function validateTokenSequence(tokens) {
       }
     }
 
-    // Empty parentheses: "()"
     if (
       token.type === "paren" &&
       token.value === ")" &&
@@ -288,13 +274,12 @@ function validateTokenSequence(tokens) {
     throw new Error("Mismatched parentheses: missing ')'");
   }
 
-  // Expression cannot end on an operator: "3 +"
   const last = tokens[tokens.length - 1];
   if (last.type === "operator") {
     throw new Error("Invalid expression: cannot end with an operator");
   }
 
-  // Expression cannot start with a binary-only operator like * / % ^
+
   const first = tokens[0];
   if (first.type === "operator" && !["+", "-"].includes(first.value)) {
     throw new Error(`Invalid expression: cannot start with "${first.value}"`);
@@ -303,11 +288,11 @@ function validateTokenSequence(tokens) {
 
 
 function calculate(expression) {
-  const rawTokens = tokenize(expression);          // string -> tokens
-  validateTokenSequence(rawTokens);                 // catch structural mistakes early
-  const tokens = markUnaryOperators(rawTokens);      // fix unary +/-
-  const postfix = toPostfix(tokens);                 // shunting yard: infix -> postfix
-  const result = evaluatePostfix(postfix);           // postfix -> final number
+  const rawTokens = tokenize(expression);          
+  validateTokenSequence(rawTokens);                 
+  const tokens = markUnaryOperators(rawTokens);      
+  const postfix = toPostfix(tokens);                
+  const result = evaluatePostfix(postfix);          
   return result;
 }
 

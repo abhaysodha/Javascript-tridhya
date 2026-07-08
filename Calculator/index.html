@@ -47,7 +47,6 @@
       <button class="btn equals" data-action="equals">=</button>
     </div>
 
-        //Error message
     <div id="error" class="error"></div>
 
   </div>
@@ -69,7 +68,7 @@
 
     function showResult() {
       try {
-        const value = calculate(currentExpression); // from script.js
+        const value = calculate(currentExpression); 
         resultEl.textContent = value;
         errorEl.textContent = "";
       } catch (err) {

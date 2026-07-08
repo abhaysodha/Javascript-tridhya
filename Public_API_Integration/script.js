@@ -114,7 +114,7 @@ function handleInput() {
   handleConversion(amount, from, to);
 }
 
-// debounce so it only runs 500ms after the user stops typing
+
 const debouncedHandleInput = debounce(handleInput, 500);
 
 amountInput.addEventListener('input', debouncedHandleInput);
