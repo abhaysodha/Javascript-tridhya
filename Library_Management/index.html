@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="toast-container"></div>
+
+  <header class="top-header">
+    <h1>📚 Library Manager</h1>
+  </header>
+
+  <main class="page-wrapper">
+
+    <section id="dashboard" class="dashboard-grid"></section>
+
+    <div class="two-column">
+      <div class="card">
+        <h2>Add Book</h2>
+        <form id="add-book-form" class="stacked-form">
+          <input name="title" placeholder="Book Title" />
+          <input name="author" placeholder="Author Name" />
+          <select name="genre">
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="SciFi">Sci-Fi</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Biography">Biography</option>
+          </select>
+          <input name="totalCopies" type="number" placeholder="Number of Copies" min="1" />
+          <button type="submit" class="btn-primary">Add Book</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Add Member</h2>
+        <form id="add-member-form" class="stacked-form">
+          <input name="name" placeholder="Member Name" />
+          <button type="submit" class="btn-primary">Add Member</button>
+        </form>
+
+        <h2 class="mt">Issue a Book</h2>
+        <select id="issue-member-select" class="full-width"></select>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="section-header">
+        <h2>Books</h2>
+        <div class="controls">
+          <input id="search-input" placeholder=" Search title or author..." />
+          <select id="sort-control">
+            <option value="title:asc">Title A → Z</option>
+            <option value="title:desc">Title Z → A</option>
+            <option value="addedDate:desc">Newest First</option>
+            <option value="addedDate:asc">Oldest First</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Genre</th>
+              <th>Copies</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="book-list-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Issued Books</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Book</th>
+              <th>Member</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="loans-list-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Members</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Joined</th>
+              <th>Borrowed</th>
+              <th>Fines</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="member-list-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>

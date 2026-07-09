@@ -9,7 +9,7 @@ function debounce(fn, delay) {
 
 const StudentDB = (function () {
 
-  // PRIVATE STATE 
+
   let students = [];
   let nextId = 1;
  
@@ -100,7 +100,6 @@ const StudentDB = (function () {
       return { success: true, message: "All data cleared." };
     },
 
-     //SEARCH & SORT 
     searchByName(query) {
       if (!query) return this.getAllStudents();
       const q = query.toLowerCase();
