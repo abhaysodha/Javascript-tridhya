@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f5f7;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  margin: 0 0 4px 0;
+  color: #1f2937;
+}
+
+.subtitle {
+  margin: 0 0 20px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+input[type="text"] {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #6366f1;
+}
+
+.search-input {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+.btn.secondary {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.btn.small {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.btn.danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.task.completed .task-info strong,
+.task.completed .task-info p {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-info strong {
+  display: block;
+  color: #111827;
+}
+
+.task-info p {
+  margin: 2px 0 0 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.task-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 20px 0;
+}
